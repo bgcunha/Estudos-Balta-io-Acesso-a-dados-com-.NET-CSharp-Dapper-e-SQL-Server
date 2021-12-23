@@ -15,11 +15,11 @@ namespace Blog
             using var connection = new SqlConnection(CONNECTION_STRING);
 
             // DeleteUser(connection);
-            CreateUser(connection);
+            // CreateUser(connection);
             // UpdateUser(connection);
             // ReadUsers(connection);
             // ReadRoles(connection);
-            ReadUsersWithRoles(connection);
+            // ReadUsersWithRoles(connection);
             // ReadTags(connection);
             // ReadWithRoles(connection);
         }
