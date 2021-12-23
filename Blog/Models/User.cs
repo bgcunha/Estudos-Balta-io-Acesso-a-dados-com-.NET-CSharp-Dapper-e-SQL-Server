@@ -6,12 +6,9 @@ namespace Blog.Models
     [Table("[User]")]
     public class User
     {
-        public User()
-        {
-            Roles = new List<Role>();
-        }
+        public User() => Roles = new List<Role>();
 
-        [Key] 
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -20,7 +17,7 @@ namespace Blog.Models
         public string Image { get; set; }
         public string Slug { get; set; }
 
-        [Write(false)] 
+        [Write(false)]
         public List<Role> Roles { get; set; }
     }
 }
