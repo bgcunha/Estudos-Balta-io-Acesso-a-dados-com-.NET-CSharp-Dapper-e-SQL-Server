@@ -1,4 +1,5 @@
 ﻿using Blog.Models;
+using Blog.Repositories;
 using Dapper.Contrib.Extensions;
 using Microsoft.Data.SqlClient;
 using System;
@@ -7,31 +8,47 @@ namespace Blog
 {
     class Program
     {
-        private readonly static string CONNECTION_STRING = "Server=DESKTOP-BKLEGIN\\SQLEXPRESS2019;Database=Blog;User ID=sa;Password=sa123";
+        private const string CONNECTION_STRING = "Server=DESKTOP-BKLEGIN\\SQLEXPRESS2019;Database=Blog;User ID=sa;Password=sa123";
 
         static void Main(string[] args)
         {
-            DeleteUser();
+            // CreateUser(repository);
+            // UpdateUser(repository);
+            // DeleteUser(repository);
+            // ReadUser(repository);
+            ReadUsers(new SqlConnection(CONNECTION_STRING));
+            ReadRoles(new SqlConnection(CONNECTION_STRING));
+            // ReadWithRoles(connection);
         }
 
-        private static void ReadUsers()
+        private static void ReadUsers(SqlConnection connection)
         {
-            using (var connection = new SqlConnection(CONNECTION_STRING))
-            {
-                var users = connection.GetAll<User>();
+            var repository = new Repository<User>(connection);
+            var users = repository.Read();
 
-                foreach (var item in users)
-                    Console.WriteLine(item.Email);
-            }
-
+            foreach (var user in users)
+                Console.WriteLine(user.Name);
         }
-        private static void ReadUser()
+        private static void ReadUser(SqlConnection connection)
         {
-            using (var connection = new SqlConnection(CONNECTION_STRING))
-            {
-                var user = connection.Get<User>(1);
-                Console.WriteLine(user.Email);
-            }
+            var repository = new Repository<User>(connection);
+            var user = repository.Read(1);
+            Console.WriteLine(user.Name);
+        }
+
+        private static void ReadRoles(SqlConnection connection)
+        {
+            var repository = new Repository<Role>(connection);
+            var roles = repository.Read();
+
+            foreach (var role in roles)
+                Console.WriteLine(role.Name);
+        }
+        private static void ReadRole(SqlConnection connection)
+        {
+            var repository = new Repository<Role>(connection);
+            var role = repository.Read(1);
+            Console.WriteLine(role.Name);
         }
 
         private static void CreateUser()
