@@ -26,11 +26,11 @@ namespace BaltaDataAccess
                 // ExecuteProcedure(connection);
                 // ExecuteReadProcedure(connection);
                 // ExecuteScalar(connection);
-                 ReadView(connection);
+                // ReadView(connection);
                 // OneToOne(connection);
                 // OneToMany(connection);
                 // QueryMutiple(connection);
-                // SelectIn(connection);
+                 SelectIn(connection);
                 // Like(connection, "backend");
                 // Transaction(connection);
 
@@ -343,14 +343,16 @@ namespace BaltaDataAccess
 
         static void SelectIn(SqlConnection connection)
         {
-            var query = @"select * from Career where [Id] IN @Id";
+            var query = @"select * from Career where [Id] IN @Ids";
+
+            var Ids = new[]{
+                    "4327ac7e-963b-4893-9f31-9a3b28a4e72b",
+                    "e6730d1c-6870-4df3-ae68-438624e04c72"
+                };
 
             var items = connection.Query<Career>(query, new
             {
-                Id = new[]{
-                    "4327ac7e-963b-4893-9f31-9a3b28a4e72b",
-                    "e6730d1c-6870-4df3-ae68-438624e04c72"
-                }
+                Ids
             });
 
             foreach (var item in items)
