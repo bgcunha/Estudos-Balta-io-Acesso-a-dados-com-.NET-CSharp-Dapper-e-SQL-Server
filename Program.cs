@@ -416,7 +416,7 @@ namespace BaltaDataAccess
                 transaction.Commit();
                 // transaction.Rollback();
 
-                Console.WriteLine($"{rows} linhas inseridas");
+                Console.WriteLine($"{rows} linhas inseridas com sucesso!");
             }
         }
     }
