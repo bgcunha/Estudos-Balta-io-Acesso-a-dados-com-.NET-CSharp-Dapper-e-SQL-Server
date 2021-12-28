@@ -10,8 +10,8 @@ namespace Blog.Repositories
     {
         private readonly SqlConnection _connection;
 
-        public UserRepository(SqlConnection connection) : base(connection)
-            => _connection = connection;
+        // public UserRepository(SqlConnection connection) : base(connection)
+        //     => _connection = connection;
 
         public List<User> ReadWithRole()
         {

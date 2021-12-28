@@ -7,23 +7,24 @@ namespace Blog.Repositories
 {
     public class Repository<TModel> where TModel : class
     {
-        private readonly SqlConnection _connection;
+        // private readonly SqlConnection _connection;
 
-        public Repository(SqlConnection connection) => _connection = connection;
+        // public Repository(SqlConnection connection) => _connection = connection;
 
-        public void Create(TModel model) => _connection.Insert(model);
+        public IEnumerable<TModel> Get() => Database.Connection.GetAll<TModel>();
+        public void Create(TModel model) => Database.Connection.Insert(model);
 
-        public List<TModel> Read() => _connection.GetAll<TModel>().ToList();
+        public List<TModel> Read() => Database.Connection.GetAll<TModel>().ToList();
 
-        public TModel Read(int id) => _connection.Get<TModel>(id);
+        public TModel Read(int id) => Database.Connection.Get<TModel>(id);
 
-        public void Update(TModel model) => _connection.Update(model);
+        public void Update(TModel model) => Database.Connection.Update(model);
 
-        public void Delete(TModel model) => _connection.Delete(model);
+        public void Delete(TModel model) => Database.Connection.Delete(model);
         public void Delete(int id)
         {
             var model = Read(id);
-            _connection.Delete(model);
+            Database.Connection.Delete(model);
         }
     }
 }

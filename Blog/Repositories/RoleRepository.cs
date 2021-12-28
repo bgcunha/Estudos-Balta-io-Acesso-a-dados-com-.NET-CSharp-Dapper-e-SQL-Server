@@ -10,7 +10,7 @@ namespace Blog.Repositories
     {
         private readonly SqlConnection _connection;
 
-        public RoleRepository(SqlConnection connection) : base(connection)
-            => _connection = connection;
+        // public RoleRepository(SqlConnection connection) : base(connection)
+        //     => _connection = connection;
     }
 }
